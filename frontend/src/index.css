@@ -1,0 +1,347 @@
+/* Modern Design System for VectorShift Pipeline */
+
+:root {
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Base Node Styles */
+.base-node {
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.base-node::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: inherit;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.base-node:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.base-node:hover::before {
+  opacity: 0.6;
+}
+
+.base-node:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.base-node input,
+.base-node select,
+.base-node textarea {
+  transition: all var(--transition-fast);
+}
+
+.base-node input:focus,
+.base-node select:focus,
+.base-node textarea:focus {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  transform: scale(1.02);
+}
+
+.base-node input::placeholder,
+.base-node textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* React Flow Customizations */
+.react-flow__node {
+  cursor: grab;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+.react-flow__node.selected {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.4) !important;
+}
+
+.react-flow__handle {
+  transition: all var(--transition-fast);
+  cursor: crosshair;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.react-flow__handle-connecting {
+  background: var(--color-success) !important;
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+.react-flow__edge-path {
+  stroke-width: 2;
+  transition: stroke-width var(--transition-fast);
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 3;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke-width: 3;
+  animation: dash 20s linear infinite;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: dash 20s linear infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(102, 126, 234, 0);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Draggable Node Styles */
+.draggable-node {
+  padding: 10px 16px;
+  background: white;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  cursor: grab;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.draggable-node::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(102, 126, 234, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.draggable-node:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.draggable-node:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-secondary);
+}
+
+.draggable-node:active {
+  cursor: grabbing;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* Submit Button Styles */
+.submit-button {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.submit-button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-xl);
+}
+
+.submit-button:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-button:disabled:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
+/* React Flow Controls Styling */
+.react-flow__controls {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: white;
+  border-bottom: 1px solid #eee;
+  transition: all var(--transition-fast);
+}
+
+.react-flow__controls-button:hover {
+  background: var(--color-primary);
+}
+
+.react-flow__controls-button:hover svg {
+  fill: white;
+}
+
+/* MiniMap Styling */
+.react-flow__minimap {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
