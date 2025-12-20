@@ -1,38 +1,41 @@
 # VectorShift Frontend Technical Assessment
 
-A professional node-based pipeline builder with a clean, modern UI featuring 10 different node types with icons and uniform styling.
+A professional node-based pipeline builder with a modern, clean UI featuring custom icons, unified styling, and enhanced user experience.
 
 ![UI Preview](https://img.shields.io/badge/Status-Complete-success)
 ![React](https://img.shields.io/badge/React-18.x-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green)
 
-## 🎨 Features
+## ✨ Features
 
 ### Modern UI Design
-- ✅ **10 Node Types** with distinctive icons (📥📤🤖📝🔗🌐⚙️🔍🔀)
-- ✅ **Clean Color Palette** - Professional light backgrounds
-- ✅ **Uniform Typography** - Consistent dark text (#333) for readability
-- ✅ **Professional Styling** - Production-ready appearance
+- 🎨 **Professional Icons** - Custom SVG icons for all node types and UI elements
+- 🎯 **Unified Color Scheme** - Consistent indigo theme (#e8eaf6 background, #5c6bc0 border)
+- 🌟 **Modern Toolbar** - Dark gradient background with organized node categories
+- 📱 **Enhanced Notifications** - Icon-based toast system with success, error, and disconnected states
+- 🧹 **Clean Codebase** - Production-ready with no debug code or unnecessary comments
 
 ### Node Types
 
 | Node | Icon | Purpose |
 |------|------|---------|
-| **Input** | 📥 | Data input with name and type fields |
-| **Output** | 📤 | Data output with name and type fields |
-| **LLM** | 🤖 | AI processing with system and prompt inputs |
-| **Text** | 📝 | Text templates with dynamic variable support |
-| **Aggregate** | 🔗 | Data aggregation with multiple operations |
-| **API Call** | 🌐 | HTTP requests with method and URL configuration |
-| **Transform** | ⚙️ | Data transformation (uppercase, lowercase, etc.) |
-| **Filter** | 🔍 | Data filtering with conditions |
-| **Conditional** | 🔀 | Branching logic with true/false outputs |
+| **Input** | ![Input](public/icon-input.png) | Data input with name and type fields |
+| **Output** | ![Output](public/icon-output.png) | Data output with name and type fields |
+| **LLM** | ![LLM](public/icon-llm.png) | AI processing with system and prompt inputs |
+| **Text** | ![Text](public/icon-text.png) | Text templates with dynamic variable support |
+| **Aggregate** | ![Aggregate](public/icon-aggregate.png) | Data aggregation with multiple operations |
+| **API Call** | ![API](public/icon-api.png) | HTTP requests with method and URL configuration |
+| **Transform** | ![Transform](public/icon-transform.png) | Data transformation (uppercase, lowercase, etc.) |
+| **Filter** | ![Filter](public/icon-filter.png) | Data filtering with conditions |
+| **Conditional** | ![Conditional](public/icon-conditional.png) | Branching logic with true/false outputs |
 
 ### Technical Features
 - 🔄 **Dynamic Handles** - Text nodes generate handles based on `{{variables}}`
-- 🎯 **Drag & Drop** - Intuitive node placement
-- 🔗 **Connection System** - Visual pipeline building
+- 🎯 **Drag & Drop** - Intuitive node placement from organized toolbar
+- 🔗 **Connection System** - Visual pipeline building with smooth connections
 - 📊 **Pipeline Submission** - Backend integration for DAG analysis
+- 🗑️ **Delete Functionality** - Remove selected nodes and edges with delete button or keyboard
+- 💬 **Smart Notifications** - Context-aware toast messages with appropriate icons
 
 ## 🚀 Getting Started
 
@@ -82,24 +85,39 @@ The frontend will run on `http://localhost:3000`
 ```
 VS_Assessment/
 ├── frontend/
+│   ├── public/
+│   │   ├── icon-input.png          # Input node icon
+│   │   ├── icon-output.png         # Output node icon
+│   │   ├── icon-text.png           # Text node icon
+│   │   ├── icon-llm.png            # LLM node icon
+│   │   ├── icon-aggregate.png      # Aggregate node icon
+│   │   ├── icon-api.png            # API node icon
+│   │   ├── icon-transform.png      # Transform node icon
+│   │   ├── icon-filter.png         # Filter node icon
+│   │   ├── icon-conditional.png    # Conditional node icon
+│   │   ├── icon-success.png        # Success toast icon
+│   │   ├── icon-error.png          # Error toast icon
+│   │   └── icon-disconnected.png   # Disconnected toast icon
 │   ├── src/
 │   │   ├── nodes/
-│   │   │   ├── BaseNode.js          # Reusable base component
-│   │   │   ├── inputNode.js         # Input node (📥)
-│   │   │   ├── outputNode.js        # Output node (📤)
-│   │   │   ├── llmNode.js           # LLM node (🤖)
-│   │   │   ├── textNode.js          # Text node (📝)
-│   │   │   ├── aggregateNode.js     # Aggregate node (🔗)
-│   │   │   ├── apiNode.js           # API Call node (🌐)
-│   │   │   ├── transformNode.js     # Transform node (⚙️)
-│   │   │   ├── filterNode.js        # Filter node (🔍)
-│   │   │   └── conditionalNode.js   # Conditional node (🔀)
-│   │   ├── ui.js                    # Main UI component
-│   │   ├── submit.js                # Pipeline submission logic
-│   │   └── toolbar.js               # Node palette toolbar
+│   │   │   ├── BaseNode.js         # Reusable base component
+│   │   │   ├── inputNode.js        # Input node
+│   │   │   ├── outputNode.js       # Output node
+│   │   │   ├── llmNode.js          # LLM node
+│   │   │   ├── textNode.js         # Text node
+│   │   │   ├── aggregateNode.js    # Aggregate node
+│   │   │   ├── apiNode.js          # API Call node
+│   │   │   ├── transformNode.js    # Transform node
+│   │   │   ├── filterNode.js       # Filter node
+│   │   │   └── conditionalNode.js  # Conditional node
+│   │   ├── ui.js                   # Main UI component
+│   │   ├── submit.js               # Pipeline submission with toast notifications
+│   │   ├── toolbar.js              # Modern node palette toolbar
+│   │   ├── draggableNode.js        # Draggable node component
+│   │   └── store.js                # Zustand state management
 │   └── package.json
 ├── backend/
-│   ├── main.py                      # FastAPI server
+│   ├── main.py                     # FastAPI server
 │   └── requirements.txt
 └── README.md
 ```
@@ -108,34 +126,49 @@ VS_Assessment/
 
 ### Building a Pipeline
 
-1. **Add Nodes**: Click or drag nodes from the palette to the canvas
+1. **Add Nodes**: Drag nodes from the categorized toolbar to the canvas
+   - **Input/Output**: Input, Output, Text
+   - **Processing**: LLM, Transform, API Call
+   - **Logic & Flow**: Filter, Conditional, Aggregate
+
 2. **Configure Nodes**: Fill in the required fields for each node
+
 3. **Connect Nodes**: Drag from output handles to input handles
-4. **Submit Pipeline**: Click "Submit Pipeline" to send to backend
+
+4. **Delete Nodes**: Select nodes/edges and press Delete key or click the delete button
+
+5. **Submit Pipeline**: Click "Submit Pipeline" to send to backend
 
 ### Example: Text Template Pipeline
 
-1. Add an **Input** node (📥) - Configure as "Text" type
-2. Add a **Text** node (📝) - Enter template: `Hello {{input}}!`
-3. Add an **Output** node (📤) - Configure as "Text" type
+1. Add an **Input** node - Configure as "Text" type
+2. Add a **Text** node - Enter template: `Hello {{input}}!`
+3. Add an **Output** node - Configure as "Text" type
 4. Connect: Input → Text → Output
 5. Submit to see the DAG structure
 
 ## 🎨 Design System
 
 ### Color Palette
-- **Input**: Light Indigo (#e8eaf6)
-- **Output**: Light Pink (#fce4ec)
-- **LLM**: Light Cyan (#e1f5fe)
-- **Text**: Light Orange (#fff3e0)
-- **Aggregate**: Light Purple (#f3e5f5)
-- **API Call**: Light Rose (#ffe4e6)
-- **Transform**: Light Amber (#fef3c7)
-- **Filter**: Light Teal (#ccfbf1)
-- **Conditional**: Light Sky Blue (#e0f2fe)
+All nodes use a **unified indigo theme** for a professional, cohesive appearance:
+- **Background**: Light Indigo (#e8eaf6)
+- **Border**: Indigo (#5c6bc0)
+- **Text**: Dark Gray (#333333)
+
+### Toolbar Design
+- **Background**: Dark gradient (linear-gradient(135deg, #2d3748 0%, #1a202c 100%))
+- **Title**: White, 16px, Bold
+- **Categories**: White, 11px, Uppercase
+- **Organized Layout**: Three categories with visual separators
+
+### Toast Notifications
+- **Success**: Green checkmark icon - Pipeline submitted successfully
+- **Error**: Red X icon - Validation errors (e.g., empty pipeline)
+- **Disconnected**: Broken link icon - Backend unavailable
+- **Design**: Indigo background with icon header and clean message layout
 
 ### Typography
-- **Title**: 13px, Bold, #333333
+- **Node Title**: 13px, Bold, #333333
 - **Labels**: 11px, Medium, #666666
 - **Input Text**: 12px, Regular, #333333
 
@@ -178,7 +211,7 @@ import { BaseNode } from './BaseNode';
 export const CustomNode = ({ id, data }) => {
   const config = {
     title: 'Custom',
-    icon: '🎯',
+    icon: '/icon-custom.png',
     fields: [
       {
         name: 'fieldName',
@@ -200,8 +233,8 @@ export const CustomNode = ({ id, data }) => {
       },
     ],
     styles: {
-      background: '#yourColor',
-      border: '1.5px solid #borderColor',
+      background: '#e8eaf6',
+      border: '1.5px solid #5c6bc0',
     },
   };
 
@@ -209,7 +242,9 @@ export const CustomNode = ({ id, data }) => {
 };
 ```
 
-3. Register in `ui.js` nodeTypes
+3. Add icon to `public/` folder
+4. Register in `ui.js` nodeTypes
+5. Add to toolbar in `toolbar.js`
 
 ## 📝 Technical Decisions
 
@@ -219,31 +254,46 @@ Created a flexible `BaseNode` component to:
 - Ensure consistent styling
 - Simplify adding new node types
 - Centralize common functionality
+- Support both emoji and image icons
+
+### Icon System
+- Custom SVG/PNG icons for professional appearance
+- Consistent 16x16px sizing for toolbar
+- 24x24px for toast notifications
+- Automatic fallback for emoji icons
 
 ### Dynamic Handles
 Text nodes automatically generate input handles based on `{{variable}}` patterns in the template, enabling flexible data flow.
 
-### Color System
-Light, professional backgrounds with dark text ensure:
+### Unified Color System
+Single indigo theme across all nodes ensures:
+- Professional, cohesive appearance
 - Excellent readability
-- Professional appearance
-- Clear visual distinction between node types
+- Clear visual hierarchy
+- Production-ready design
+
+### Clean Codebase
+- No console.log statements
+- No unnecessary comments
+- No debug code
+- Production-ready structure
 
 ## 🎓 Assessment Requirements
 
 ✅ **Node Abstraction** - BaseNode component for reusability  
 ✅ **Text Node** - Dynamic handles based on variables  
-✅ **Styling** - Professional, clean UI design  
-✅ **Additional Nodes** - 5+ extra node types implemented  
+✅ **Styling** - Professional, modern UI design with custom icons  
+✅ **Additional Nodes** - 6 extra node types implemented  
 ✅ **Backend Integration** - Pipeline submission and DAG analysis  
+✅ **Enhanced UX** - Toast notifications, delete functionality, organized toolbar  
 
-## 📸 Screenshots
+## 🌟 Highlights
 
-### Complete Node Palette
-All 10 node types with icons and clean styling
-
-### Pipeline Example
-Visual demonstration of connected nodes forming a data pipeline
+- **Modern Design**: Professional indigo theme with custom icons
+- **User Experience**: Intuitive toolbar organization and smart notifications
+- **Code Quality**: Clean, production-ready codebase
+- **Extensibility**: Easy to add new node types with BaseNode abstraction
+- **Functionality**: Full pipeline building with backend integration
 
 ## 🤝 Contributing
 
