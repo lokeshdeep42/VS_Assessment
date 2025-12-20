@@ -1,4 +1,4 @@
-// inputNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const InputNode = ({ id, data }) => {
   const config = {
     title: 'Input',
-    icon: '📥',
+    icon: '/icon-input.png',
     fields: [
       {
         name: 'inputName',

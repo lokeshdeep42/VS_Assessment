@@ -241,7 +241,23 @@ export const BaseNode = ({ id, data, config }) => {
             {renderHandles()}
 
             <div style={titleStyles}>
-                {icon && <span style={{ marginRight: '6px' }}>{icon}</span>}
+                {icon && (
+                    <span style={{ marginRight: '6px' }}>
+                        {icon.startsWith('/') ? (
+                            <img
+                                src={icon}
+                                alt={title}
+                                style={{
+                                    width: '16px',
+                                    height: '16px',
+                                    verticalAlign: 'middle',
+                                }}
+                            />
+                        ) : (
+                            icon
+                        )}
+                    </span>
+                )}
                 {title}
             </div>
 

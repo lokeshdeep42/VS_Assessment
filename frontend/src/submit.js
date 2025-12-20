@@ -1,4 +1,4 @@
-// submit.js
+
 
 import { useState } from 'react';
 import { useStore } from './store';
@@ -8,72 +8,15 @@ export const SubmitButton = () => {
     const edges = useStore((state) => state.edges);
     const [toast, setToast] = useState(null);
 
-    // Function to check if graph is a DAG (Directed Acyclic Graph)
-    const isDAG = (nodes, edges) => {
-        // Build adjacency list
-        const adjacencyList = {};
-        nodes.forEach(node => {
-            adjacencyList[node.id] = [];
-        });
-
-        edges.forEach(edge => {
-            if (adjacencyList[edge.source]) {
-                adjacencyList[edge.source].push(edge.target);
-            }
-        });
-
-        // DFS to detect cycles
-        const visited = new Set();
-        const recursionStack = new Set();
-
-        const hasCycle = (nodeId) => {
-            visited.add(nodeId);
-            recursionStack.add(nodeId);
-
-            const neighbors = adjacencyList[nodeId] || [];
-            for (const neighbor of neighbors) {
-                if (!visited.has(neighbor)) {
-                    if (hasCycle(neighbor)) {
-                        return true;
-                    }
-                } else if (recursionStack.has(neighbor)) {
-                    return true;
-                }
-            }
-
-            recursionStack.delete(nodeId);
-            return false;
-        };
-
-        // Check all nodes
-        for (const nodeId of Object.keys(adjacencyList)) {
-            if (!visited.has(nodeId)) {
-                if (hasCycle(nodeId)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    };
-
     const handleSubmit = async () => {
-        console.log('Submit button clicked!');
-        console.log('Nodes:', nodes);
-        console.log('Edges:', edges);
 
-        // Validate pipeline
         if (nodes.length === 0) {
-            alert('Pipeline is empty! Please add some nodes first.');
+            const message = 'Pipeline is Empty!\n\nPlease add some nodes before submitting.';
+            setToast({ type: 'error', message });
+            setTimeout(() => setToast(null), 5000);
             return;
         }
 
-        // Calculate pipeline metrics
-        const numNodes = nodes.length;
-        const numEdges = edges.length;
-        const isDag = isDAG(nodes, edges);
-
-        // Parse pipeline data
         const pipelineData = {
             nodes: nodes.map(node => ({
                 id: node.id,
@@ -91,7 +34,6 @@ export const SubmitButton = () => {
         };
 
         try {
-            // Send to backend
             const response = await fetch('http://localhost:8000/pipelines/parse', {
                 method: 'POST',
                 headers: {
@@ -106,15 +48,13 @@ export const SubmitButton = () => {
 
             const result = await response.json();
 
-            // Display results with toast
-            const message = `✅ Pipeline Submitted Successfully!\n\nNodes: ${numNodes} | Edges: ${numEdges} | DAG: ${isDag ? 'Yes' : 'No'}\n\nBackend Response: ${JSON.stringify(result, null, 2)}`;
+            const message = `Pipeline Submitted Successfully!\n\nNodes: ${result.num_nodes} | Edges: ${result.num_edges} | DAG: ${result.is_dag ? 'Yes' : 'No'}`;
             setToast({ type: 'success', message });
             setTimeout(() => setToast(null), 5000);
 
         } catch (error) {
-            console.error('Error submitting pipeline:', error);
-            const message = `⚠️ Pipeline Analysis (Backend Unavailable)\n\nNodes: ${numNodes} | Edges: ${numEdges} | DAG: ${isDag ? 'Yes' : 'No'}\n\nError: ${error.message}\n\nNote: Make sure the backend server is running on http://localhost:8000`;
-            setToast({ type: 'error', message });
+            const message = `Backend Unavailable\n\n${error.message}\n\nPlease make sure the backend server is running on http://localhost:8000`;
+            setToast({ type: 'disconnected', message });
             setTimeout(() => setToast(null), 5000);
         }
     };
@@ -126,29 +66,106 @@ export const SubmitButton = () => {
                     position: 'fixed',
                     top: '20px',
                     right: '20px',
-                    maxWidth: '400px',
-                    padding: '16px 20px',
-                    background: toast.type === 'success'
-                        ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                        : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-                    color: 'white',
+                    maxWidth: '420px',
+                    padding: '20px 24px',
+                    background: '#e8eaf6',
+                    border: '2px solid #5c6bc0',
                     borderRadius: '12px',
-                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+                    boxShadow: '0 10px 30px rgba(92, 107, 192, 0.25), 0 4px 12px rgba(0, 0, 0, 0.1)',
                     zIndex: 9999,
                     animation: 'slideIn 0.3s ease-out',
                     whiteSpace: 'pre-wrap',
                     fontSize: '13px',
-                    lineHeight: '1.5',
+                    lineHeight: '1.6',
                     fontWeight: '500',
+                    color: '#333333',
                 }}>
-                    {toast.message}
+                    {/* Header with Icon and Close Button */}
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginBottom: '12px',
+                        paddingBottom: '10px',
+                        borderBottom: '1px solid rgba(92, 107, 192, 0.2)',
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                        }}>
+                            <img
+                                src={
+                                    toast.type === 'success'
+                                        ? '/icon-success.png'
+                                        : toast.type === 'disconnected'
+                                            ? '/icon-disconnected.png'
+                                            : '/icon-error.png'
+                                }
+                                alt={toast.type}
+                                style={{
+                                    width: '24px',
+                                    height: '24px',
+                                }}
+                            />
+                            <span style={{
+                                fontSize: '14px',
+                                fontWeight: '700',
+                                color: '#5c6bc0',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.5px',
+                            }}>
+                                {toast.type === 'success' ? 'Success' : toast.type === 'disconnected' ? 'Disconnected' : 'Error'}
+                            </span>
+                        </div>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setToast(null)}
+                            style={{
+                                background: 'transparent',
+                                border: 'none',
+                                color: '#5c6bc0',
+                                cursor: 'pointer',
+                                fontSize: '20px',
+                                fontWeight: 'bold',
+                                width: '24px',
+                                height: '24px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: '4px',
+                                transition: 'all 0.2s ease',
+                                padding: 0,
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.background = 'rgba(92, 107, 192, 0.1)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.background = 'transparent';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        >
+                            ×
+                        </button>
+                    </div>
+
+                    {/* Message Content */}
+                    <div style={{
+                        color: '#333333',
+                        fontSize: '13px',
+                        lineHeight: '1.6',
+                    }}>
+                        {toast.message}
+                    </div>
                 </div>
             )}
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '20px',
+                padding: '10px',
             }}>
                 <button type="button" className="submit-button" onClick={handleSubmit}>
                     Submit Pipeline

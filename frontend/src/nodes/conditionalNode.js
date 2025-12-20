@@ -1,4 +1,4 @@
-// conditionalNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const ConditionalNode = ({ id, data }) => {
     const config = {
         title: 'Conditional',
-        icon: '🔀',
+        icon: '/icon-conditional.png',
         fields: [
             {
                 name: 'operator',
@@ -45,8 +45,8 @@ export const ConditionalNode = ({ id, data }) => {
             },
         ],
         styles: {
-            background: '#e0f2fe',
-            border: '1.5px solid #0ea5e9',
+            background: '#e8eaf6',
+            border: '1.5px solid #5c6bc0',
         },
     };
 

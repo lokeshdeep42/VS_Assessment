@@ -1,4 +1,4 @@
-// apiNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const ApiNode = ({ id, data }) => {
     const config = {
         title: 'API Call',
-        icon: '🌐',
+        icon: '/icon-api.png',
         fields: [
             {
                 name: 'method',
@@ -50,8 +50,8 @@ export const ApiNode = ({ id, data }) => {
             },
         ],
         styles: {
-            background: '#ffe4e6',
-            border: '1.5px solid #f43f5e',
+            background: '#e8eaf6',
+            border: '1.5px solid #5c6bc0',
         },
     };
 

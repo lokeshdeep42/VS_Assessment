@@ -1,4 +1,4 @@
-// textNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -47,7 +47,7 @@ export const TextNode = ({ id, data }) => {
 
   const config = {
     title: 'Text',
-    icon: '📝',
+    icon: '/icon-text.png',
     fields: [
       {
         name: 'text',
@@ -66,8 +66,8 @@ export const TextNode = ({ id, data }) => {
     ],
     dynamicHandles: generateDynamicHandles,
     styles: {
-      background: '#fff3e0',
-      border: '1.5px solid #ffa726',
+      background: '#e8eaf6',
+      border: '1.5px solid #5c6bc0',
       minHeight: 120,
     },
   };

@@ -1,9 +1,7 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
+
 
 import { useState, useRef, useCallback } from 'react';
-import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
+import ReactFlow, { Controls, Background, MiniMap, ControlButton, useReactFlow } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { InputNode } from './nodes/inputNode';
@@ -42,6 +40,32 @@ const selector = (state) => ({
   onConnect: state.onConnect,
 });
 
+const EraseButton = () => {
+  const { getNodes, setNodes, getEdges, setEdges } = useReactFlow();
+
+  const handleDelete = () => {
+    const selectedNodes = getNodes().filter(node => node.selected);
+    const selectedNodeIds = selectedNodes.map(node => node.id);
+    const selectedEdges = getEdges().filter(edge => edge.selected);
+
+    if (selectedNodeIds.length > 0) {
+      setNodes(getNodes().filter(node => !node.selected));
+    }
+
+    setEdges(getEdges().filter(edge =>
+      !edge.selected &&
+      !selectedNodeIds.includes(edge.source) &&
+      !selectedNodeIds.includes(edge.target)
+    ));
+  };
+
+  return (
+    <ControlButton onClick={handleDelete} title="Delete selected nodes and edges">
+      <div style={{ fontSize: '16px' }}>🗑️</div>
+    </ControlButton>
+  );
+};
+
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -54,6 +78,10 @@ export const PipelineUI = () => {
     onEdgesChange,
     onConnect
   } = useStore(selector, shallow);
+
+  const onNodesDelete = useCallback((nodesToDelete) => {
+    const nodeIds = nodesToDelete.map(node => node.id);
+  }, []);
 
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
@@ -69,7 +97,6 @@ export const PipelineUI = () => {
         const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
         const type = appData?.nodeType;
 
-        // check if the dropped element is valid
         if (typeof type === 'undefined' || !type) {
           return;
         }
@@ -100,13 +127,14 @@ export const PipelineUI = () => {
 
   return (
     <>
-      <div ref={reactFlowWrapper} style={{ width: '100wv', height: '70vh' }}>
+      <div ref={reactFlowWrapper} style={{ width: '100%', height: '100%' }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
+          onNodesDelete={onNodesDelete}
           onDrop={onDrop}
           onDragOver={onDragOver}
           onInit={setReactFlowInstance}
@@ -116,7 +144,9 @@ export const PipelineUI = () => {
           connectionLineType='smoothstep'
         >
           <Background color="#aaa" gap={gridSize} />
-          <Controls />
+          <Controls>
+            <EraseButton />
+          </Controls>
           <MiniMap />
         </ReactFlow>
       </div>

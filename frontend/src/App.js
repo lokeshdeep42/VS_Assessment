@@ -4,9 +4,16 @@ import { SubmitButton } from './submit';
 
 function App() {
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100vh',
+      overflow: 'hidden',
+    }}>
       <PipelineToolbar />
-      <PipelineUI />
+      <div style={{ flex: 1, overflow: 'hidden' }}>
+        <PipelineUI />
+      </div>
       <SubmitButton />
     </div>
   );

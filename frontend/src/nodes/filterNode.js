@@ -1,4 +1,4 @@
-// filterNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const FilterNode = ({ id, data }) => {
     const config = {
         title: 'Filter',
-        icon: '🔍',
+        icon: '/icon-filter.png',
         fields: [
             {
                 name: 'condition',
@@ -41,8 +41,8 @@ export const FilterNode = ({ id, data }) => {
             },
         ],
         styles: {
-            background: '#ccfbf1',
-            border: '1.5px solid #14b8a6',
+            background: '#e8eaf6',
+            border: '1.5px solid #5c6bc0',
         },
     };
 

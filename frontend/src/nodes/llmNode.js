@@ -1,4 +1,4 @@
-// llmNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const LLMNode = ({ id, data }) => {
   const config = {
     title: 'LLM',
-    icon: '🤖',
+    icon: '/icon-llm.png',
     fields: [],
     handles: [
       {
@@ -30,8 +30,8 @@ export const LLMNode = ({ id, data }) => {
       },
     ],
     styles: {
-      background: '#e1f5fe',
-      border: '1.5px solid #29b6f6',
+      background: '#e8eaf6',
+      border: '1.5px solid #5c6bc0',
     },
     renderContent: () => (
       <div style={{

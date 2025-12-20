@@ -1,4 +1,4 @@
-// aggregateNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const AggregateNode = ({ id, data }) => {
     const config = {
         title: 'Aggregate',
-        icon: '🔗',
+        icon: '/icon-aggregate.png',
         fields: [
             {
                 name: 'operation',
@@ -58,8 +58,8 @@ export const AggregateNode = ({ id, data }) => {
             },
         ],
         styles: {
-            background: '#f3e5f5',
-            border: '1.5px solid #ab47bc',
+            background: '#e8eaf6',
+            border: '1.5px solid #5c6bc0',
         },
     };
 

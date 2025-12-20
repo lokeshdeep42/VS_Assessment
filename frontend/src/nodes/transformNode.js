@@ -1,4 +1,4 @@
-// transformNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const TransformNode = ({ id, data }) => {
     const config = {
         title: 'Transform',
-        icon: '⚙️',
+        icon: '/icon-transform.png',
         fields: [
             {
                 name: 'operation',
@@ -35,8 +35,8 @@ export const TransformNode = ({ id, data }) => {
             },
         ],
         styles: {
-            background: '#fef3c7',
-            border: '1.5px solid #f59e0b',
+            background: '#e8eaf6',
+            border: '1.5px solid #5c6bc0',
         },
     };
 

@@ -1,4 +1,4 @@
-// outputNode.js
+
 
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
@@ -6,7 +6,7 @@ import { BaseNode } from './BaseNode';
 export const OutputNode = ({ id, data }) => {
   const config = {
     title: 'Output',
-    icon: '📤',
+    icon: '/icon-output.png',
     fields: [
       {
         name: 'outputName',
@@ -33,8 +33,8 @@ export const OutputNode = ({ id, data }) => {
       },
     ],
     styles: {
-      background: '#fce4ec',
-      border: '1.5px solid #ec407a',
+      background: '#e8eaf6',
+      border: '1.5px solid #5c6bc0',
     },
   };
 

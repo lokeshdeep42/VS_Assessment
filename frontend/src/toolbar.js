@@ -1,41 +1,134 @@
-// toolbar.js
-
 import { DraggableNode } from './draggableNode';
 
-export const PipelineToolbar = () => {
+const NodeIcon = ({ src, alt }) => (
+    <img
+        src={src}
+        alt={alt}
+        style={{
+            width: '16px',
+            height: '16px',
+            marginRight: '6px',
+            verticalAlign: 'middle',
+        }}
+    />
+);
 
+export const PipelineToolbar = () => {
     return (
         <div style={{
-            padding: '20px',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            padding: '12px 20px',
+            background: 'linear-gradient(135deg, #2d3748 0%, #1a202c 100%)',
             borderRadius: '0px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '24px',
         }}>
             <h3 style={{
                 color: 'white',
-                marginTop: 0,
-                marginBottom: '16px',
-                fontSize: '18px',
+                margin: 0,
+                fontSize: '16px',
                 fontWeight: '600',
-                textAlign: 'center',
+                whiteSpace: 'nowrap',
             }}>
-                Node Palette
+                PIPELINE BUILDER
             </h3>
+
+            <div style={{
+                width: '1px',
+                height: '50px',
+                background: 'rgba(255, 255, 255, 0.2)',
+            }}></div>
+
             <div style={{
                 display: 'flex',
-                flexWrap: 'wrap',
-                gap: '10px',
-                justifyContent: 'center',
+                gap: '16px',
+                alignItems: 'center',
+                flex: 1,
             }}>
-                <DraggableNode type='customInput' label='Input' />
-                <DraggableNode type='llm' label='LLM' />
-                <DraggableNode type='customOutput' label='Output' />
-                <DraggableNode type='text' label='Text' />
-                <DraggableNode type='filter' label='Filter' />
-                <DraggableNode type='transform' label='Transform' />
-                <DraggableNode type='api' label='API Call' />
-                <DraggableNode type='conditional' label='Conditional' />
-                <DraggableNode type='aggregate' label='Aggregate' />
+                <div>
+                    <div style={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontWeight: '600',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        marginBottom: '5px',
+                        textAlign: 'center',
+                    }}>
+                        Input / Output
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '6px',
+                        justifyContent: 'center',
+                    }}>
+                        <DraggableNode type='customInput' label={<><NodeIcon src="/icon-input.png" alt="Input" />Input</>} />
+                        <DraggableNode type='customOutput' label={<><NodeIcon src="/icon-output.png" alt="Output" />Output</>} />
+                        <DraggableNode type='text' label={<><NodeIcon src="/icon-text.png" alt="Text" />Text</>} />
+                    </div>
+                </div>
+
+                <div style={{
+                    width: '1px',
+                    height: '50px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                }}></div>
+
+                <div>
+                    <div style={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontWeight: '600',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        marginBottom: '5px',
+                        textAlign: 'center',
+                    }}>
+                        Processing
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '6px',
+                        justifyContent: 'center',
+                    }}>
+                        <DraggableNode type='llm' label={<><NodeIcon src="/icon-llm.png" alt="LLM" />LLM</>} />
+                        <DraggableNode type='transform' label={<><NodeIcon src="/icon-transform.png" alt="Transform" />Transform</>} />
+                        <DraggableNode type='api' label={<><NodeIcon src="/icon-api.png" alt="API" />API Call</>} />
+                    </div>
+                </div>
+
+                <div style={{
+                    width: '1px',
+                    height: '50px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                }}></div>
+
+                <div>
+                    <div style={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontWeight: '600',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        marginBottom: '5px',
+                        textAlign: 'center',
+                    }}>
+                        Logic & Flow
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: '6px',
+                        justifyContent: 'center',
+                    }}>
+                        <DraggableNode type='filter' label={<><NodeIcon src="/icon-filter.png" alt="Filter" />Filter</>} />
+                        <DraggableNode type='conditional' label={<><NodeIcon src="/icon-conditional.png" alt="Conditional" />Conditional</>} />
+                        <DraggableNode type='aggregate' label={<><NodeIcon src="/icon-aggregate.png" alt="Aggregate" />Aggregate</>} />
+                    </div>
+                </div>
             </div>
         </div>
     );
