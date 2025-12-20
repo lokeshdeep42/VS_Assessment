@@ -19,15 +19,15 @@ A professional node-based pipeline builder with a modern, clean UI featuring cus
 
 | Node | Icon | Purpose |
 |------|------|---------|
-| **Input** | ![Input](frontend/public/icon-input.png) | Data input with name and type fields |
-| **Output** | ![Output](frontend/public/icon-output.png) | Data output with name and type fields |
-| **LLM** | ![LLM](frontend/public/icon-llm.png) | AI processing with system and prompt inputs |
-| **Text** | ![Text](frontend/public/icon-text.png) | Text templates with dynamic variable support |
-| **Aggregate** | ![Aggregate](frontend/public/icon-aggregate.png) | Data aggregation with multiple operations |
-| **API Call** | ![API](frontend/public/icon-api.png) | HTTP requests with method and URL configuration |
-| **Transform** | ![Transform](frontend/public/icon-transform.png) | Data transformation (uppercase, lowercase, etc.) |
-| **Filter** | ![Filter](frontend/public/icon-filter.png) | Data filtering with conditions |
-| **Conditional** | ![Conditional](frontend/public/icon-conditional.png) | Branching logic with true/false outputs |
+| **Input** | <img src="frontend/public/icon-input.png" width="24" /> | Data input with name and type fields |
+| **Output** | <img src="frontend/public/icon-output.png" width="24" /> | Data output with name and type fields |
+| **LLM** | <img src="frontend/public/icon-llm.png" width="24" /> | AI processing with system and prompt inputs |
+| **Text** | <img src="frontend/public/icon-text.png" width="24" /> | Text templates with dynamic variable support |
+| **Aggregate** | <img src="frontend/public/icon-aggregate.png" width="24" /> | Data aggregation with multiple operations |
+| **API Call** | <img src="frontend/public/icon-api.png" width="24" /> | HTTP requests with method and URL configuration |
+| **Transform** | <img src="frontend/public/icon-transform.png" width="24" /> | Data transformation (uppercase, lowercase, etc.) |
+| **Filter** | <img src="frontend/public/icon-filter.png" width="24" /> | Data filtering with conditions |
+| **Conditional** | <img src="frontend/public/icon-conditional.png" width="24" /> | Branching logic with true/false outputs |
 
 ### Technical Features
 - 🔄 **Dynamic Handles** - Text nodes generate handles based on `{{variables}}`
