@@ -19,15 +19,15 @@ A professional node-based pipeline builder with a modern, clean UI featuring cus
 
 | Node | Icon | Purpose |
 |------|------|---------|
-| **Input** | ![Input](public/icon-input.png) | Data input with name and type fields |
-| **Output** | ![Output](public/icon-output.png) | Data output with name and type fields |
-| **LLM** | ![LLM](public/icon-llm.png) | AI processing with system and prompt inputs |
-| **Text** | ![Text](public/icon-text.png) | Text templates with dynamic variable support |
-| **Aggregate** | ![Aggregate](public/icon-aggregate.png) | Data aggregation with multiple operations |
-| **API Call** | ![API](public/icon-api.png) | HTTP requests with method and URL configuration |
-| **Transform** | ![Transform](public/icon-transform.png) | Data transformation (uppercase, lowercase, etc.) |
-| **Filter** | ![Filter](public/icon-filter.png) | Data filtering with conditions |
-| **Conditional** | ![Conditional](public/icon-conditional.png) | Branching logic with true/false outputs |
+| **Input** | ![Input](frontend/public/icon-input.png) | Data input with name and type fields |
+| **Output** | ![Output](frontend/public/icon-output.png) | Data output with name and type fields |
+| **LLM** | ![LLM](frontend/public/icon-llm.png) | AI processing with system and prompt inputs |
+| **Text** | ![Text](frontend/public/icon-text.png) | Text templates with dynamic variable support |
+| **Aggregate** | ![Aggregate](frontend/public/icon-aggregate.png) | Data aggregation with multiple operations |
+| **API Call** | ![API](frontend/public/icon-api.png) | HTTP requests with method and URL configuration |
+| **Transform** | ![Transform](frontend/public/icon-transform.png) | Data transformation (uppercase, lowercase, etc.) |
+| **Filter** | ![Filter](frontend/public/icon-filter.png) | Data filtering with conditions |
+| **Conditional** | ![Conditional](frontend/public/icon-conditional.png) | Branching logic with true/false outputs |
 
 ### Technical Features
 - 🔄 **Dynamic Handles** - Text nodes generate handles based on `{{variables}}`
