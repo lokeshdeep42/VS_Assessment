@@ -1,4 +1,4 @@
-# VectorShift Frontend Technical Assessment
+# Pipeline Builder
 
 A professional node-based pipeline builder with a modern, clean UI featuring custom icons, unified styling, and enhanced user experience.
 
@@ -48,8 +48,8 @@ A professional node-based pipeline builder with a modern, clean UI featuring cus
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/lokeshdeep42/VS_Assessment.git
-cd VS_Assessment
+git clone https://github.com/your-username/pipeline-builder.git
+cd pipeline-builder
 ```
 
 2. **Install Frontend Dependencies**
@@ -83,7 +83,7 @@ The frontend will run on `http://localhost:3000`
 ## 📁 Project Structure
 
 ```
-VS_Assessment/
+Pipeline-Builder/
 ├── frontend/
 │   ├── public/
 │   │   ├── icon-input.png          # Input node icon
@@ -278,15 +278,6 @@ Single indigo theme across all nodes ensures:
 - No debug code
 - Production-ready structure
 
-## 🎓 Assessment Requirements
-
-✅ **Node Abstraction** - BaseNode component for reusability  
-✅ **Text Node** - Dynamic handles based on variables  
-✅ **Styling** - Professional, modern UI design with custom icons  
-✅ **Additional Nodes** - 6 extra node types implemented  
-✅ **Backend Integration** - Pipeline submission and DAG analysis  
-✅ **Enhanced UX** - Toast notifications, delete functionality, organized toolbar  
-
 ## 🌟 Highlights
 
 - **Modern Design**: Professional indigo theme with custom icons
@@ -297,18 +288,13 @@ Single indigo theme across all nodes ensures:
 
 ## 🤝 Contributing
 
-This is a technical assessment project. For questions or feedback, please contact the repository owner.
+Contributions, issues, and feature requests are welcome!
 
 ## 📄 License
 
-This project is part of a technical assessment for VectorShift.
+This project is licensed under the MIT License.
 
 ## 👤 Author
 
 **Lokesh Deep**
 - GitHub: [@lokeshdeep42](https://github.com/lokeshdeep42)
-- Repository: [VS_Assessment](https://github.com/lokeshdeep42/VS_Assessment)
-
----
-
-**Built with ❤️ for VectorShift Technical Assessment**
